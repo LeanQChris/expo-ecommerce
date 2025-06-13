@@ -21,7 +21,6 @@ export default function Navbar({
 }: NavbarProps) {
   const router = useRouter();
   const { getCartItemCount } = cartStore()
-  console.log(getCartItemCount())
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={onLeftPress || router.canGoBack() ? () => router.back() : undefined}>
@@ -63,16 +62,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: 16,
-    elevation: 4,
-    backgroundColor: "white",
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
     width: "100%",
   },
   title: {
-    fontSize: 18,
+    paddingHorizontal: 50,
+    fontSize: 20,
     fontWeight: "semibold",
     color: "#222",
     textAlign: "center",
+    flex: 1,
+    height: 30,
   },
 });

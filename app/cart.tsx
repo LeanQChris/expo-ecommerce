@@ -7,11 +7,7 @@ import { View } from "react-native";
 export default function CartPage() {
   const router = useRouter();
   return (
-    <View
-      style={{
-        flex: 1,
-      }}
-    >
+    <View>
       <Navbar
         title="Cart"
         leftIcon="chevron-back"
@@ -19,7 +15,6 @@ export default function CartPage() {
       />
       <View
         style={{
-          flex: 1,
           padding: 16,
         }}
       >

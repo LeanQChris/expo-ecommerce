@@ -19,13 +19,11 @@ const styles = StyleSheet.create({
         width: "100%",
         padding: 0,
         alignItems: "flex-start",
-        marginTop: 10,
     },
     title: {
         fontSize: 26,
         fontWeight: "700",
         marginBottom: 8,
-        textAlign: "center",
         color: "#222",
         letterSpacing: 0.2,
     },

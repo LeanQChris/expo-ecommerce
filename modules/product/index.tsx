@@ -18,7 +18,8 @@ export default function ProductDetail() {
     data,
     isLoading,
     error,
-    refetch
+    refetch,
+    isRefetching
   } = useGetProduct()
 
   if (isLoading) {
@@ -47,7 +48,7 @@ export default function ProductDetail() {
       <Navbar title={data.title} />
       <ScrollView
         refreshControl={
-          <RefreshControl refreshing={isLoading} onRefresh={refetch} />
+          <RefreshControl refreshing={isRefetching} onRefresh={refetch} />
         }>
         <ProductImages data={data} />
         <View style={styles.container}>

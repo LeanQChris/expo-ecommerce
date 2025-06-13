@@ -21,24 +21,26 @@ export default function ProductImages({ data }: {
                         style={styles.mainImage}
                         resizeMode="cover"
                     />
-                    <FlatList
-                        data={data.images}
-                        horizontal
-                        showsHorizontalScrollIndicator={false}
-                        keyExtractor={(_, idx) => idx.toString()}
-                        style={styles.thumbnailList}
-                        renderItem={({ item, index }) => (
-                            <TouchableOpacity onPress={() => setSelectedImage(index)}>
-                                <Image
-                                    source={{ uri: item }}
-                                    style={[
-                                        styles.thumbnail,
-                                        selectedImage === index && styles.selectedThumbnail,
-                                    ]}
-                                />
-                            </TouchableOpacity>
-                        )}
-                    />
+                    {data.images && data.images.length > 1 &&
+                        <FlatList
+                            data={data.images}
+                            horizontal
+                            showsHorizontalScrollIndicator={false}
+                            keyExtractor={(_, idx) => idx.toString()}
+                            style={styles.thumbnailList}
+                            renderItem={({ item, index }) => (
+                                <TouchableOpacity onPress={() => setSelectedImage(index)}>
+                                    <Image
+                                        source={{ uri: item }}
+                                        style={[
+                                            styles.thumbnail,
+                                            selectedImage === index && styles.selectedThumbnail,
+                                        ]}
+                                    />
+                                </TouchableOpacity>
+                            )}
+                        />
+                    }
                 </>
             )}
         </View>
@@ -57,13 +59,12 @@ const styles = StyleSheet.create({
         position: "relative",
     },
     thumbnailList: {
-        backgroundColor: "rgba(255,255,255,0.7)", 
-        paddingHorizontal: 16,
+        backgroundColor: "rgba(255,255,255,0.7)",
+        paddingHorizontal: 8,
         position: "absolute",
-        right: 20,
         left: 20,
-        width: "90%",
-        paddingVertical: 16,
+        width: "auto",
+        paddingVertical: 8,
         bottom: 30,
         borderRadius: 12,
     },

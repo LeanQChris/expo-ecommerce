@@ -13,12 +13,12 @@ const CARD_MARGIN = 12;
 const numColumns = 2;
 
 export default function ProductsLists() {
-  const { products: data, isLoading, refetch } = useGetProducts();
+  const { products: data, isLoading, refetch, isRefetching } = useGetProducts();
 
   return (
     <FlatList
       data={data}
-      refreshing={isLoading}
+      refreshing={isRefetching}
       onRefresh={() => refetch()}
       keyExtractor={(item) => item.id.toString()}
       numColumns={numColumns}
