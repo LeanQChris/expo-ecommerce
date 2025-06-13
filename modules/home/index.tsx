@@ -11,8 +11,7 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <Navbar
-        title="Products"
-        leftIcon="menu"
+        title="Home"
         rightIcon="cart-outline"
         onLeftPress={() => console.log("Menu pressed")}
         onRightPress={() => router.push("/cart")}

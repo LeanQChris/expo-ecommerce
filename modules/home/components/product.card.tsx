@@ -27,7 +27,7 @@ export default function ProductCard({ product }: { product: Product }) {
     >
       <Image
         source={{
-          uri: product.images?.[0] || "https://via.placeholder.com/120",
+          uri: product.images[0] || "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png?v=1530129081",
         }}
         style={styles.productImage}
         resizeMode="cover"

@@ -4,4 +4,5 @@ export const endpoints = {
     allProducts: "products",
     allCategories: "categories",
     productsById: (id: number) => `products/${id}`,
+    relatedProducts: (id: number) => `products/${id}/related`,
 }

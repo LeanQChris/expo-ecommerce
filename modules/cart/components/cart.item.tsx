@@ -13,7 +13,7 @@ export default function CartItem({
 
   return (
     <View key={item.product.id} style={styles.itemContainer}>
-      <Image
+    <Image
         source={{ uri: item.product.images[0] }}
         style={styles.productImage}
         resizeMode="cover"
@@ -27,8 +27,9 @@ export default function CartItem({
         <View
           style={{
             flexDirection: "row",
-            alignItems: "center",
+            alignItems: "flex-end",
             justifyContent: "space-between",
+
           }}
         >
           <View style={styles.quantityContainer}>
@@ -56,7 +57,7 @@ export default function CartItem({
           <TouchableOpacity
             onPress={() => removeProductFromCart(item.product.id)}
           >
-            <MaterialIcons name="delete-outline" size={20} />
+            <MaterialIcons name="delete-outline" size={24} />
           </TouchableOpacity>
         </View>
       </View>
@@ -70,10 +71,11 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     marginVertical: 8,
     borderRadius: 12,
+    paddingBottom: 12,
   },
   productImage: {
-    width: 70,
-    height: 70,
+    width: 100,
+    height: 100,
     borderRadius: 8,
     marginRight: 12,
     backgroundColor: "#f2f2f2",

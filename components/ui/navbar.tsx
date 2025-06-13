@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
@@ -17,10 +18,11 @@ export default function Navbar({
   onLeftPress,
   onRightPress,
 }: NavbarProps) {
+  const router = useRouter();
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={onLeftPress}>
-        <Ionicons name={leftIcon as any} size={24} color="#222" />
+      <TouchableOpacity onPress={onLeftPress || router.canGoBack() ? () => router.back() : undefined}>
+        <Ionicons name={leftIcon as any || router.canGoBack() && "chevron-back"} size={24} color="#222" />
       </TouchableOpacity>
       <Text style={styles.title}>{title}</Text>
       <TouchableOpacity onPress={onRightPress}>
@@ -39,9 +41,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingHorizontal: 16,
     elevation: 4,
-    backgroundColor: "#F6F7FB",
+    backgroundColor: "white",
     shadowColor: "#000",
     shadowOpacity: 0.1,
+    width: "100%",
   },
   title: {
     fontSize: 18,
