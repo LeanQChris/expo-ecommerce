@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import ProductImages from "./components/product.images";
 import ProductInfo from "./components/product.info";
+import RelatedProducts from "./components/related.products";
 import useGetProduct from "./hooks/useGetProduct";
 
 export default function ProductDetail() {
@@ -55,6 +56,7 @@ export default function ProductDetail() {
           <ProductInfo data={data} />
           <CartButtons product={data} />
         </View>
+        <RelatedProducts/>
       </ScrollView>
     </View>
   );
