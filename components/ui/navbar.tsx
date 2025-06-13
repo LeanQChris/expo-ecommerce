@@ -20,11 +20,11 @@ export default function Navbar({
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={onLeftPress}>
-        <Ionicons name={leftIcon as any} size={28} color="#222" />
+        <Ionicons name={leftIcon as any} size={24} color="#222" />
       </TouchableOpacity>
       <Text style={styles.title}>{title}</Text>
       <TouchableOpacity onPress={onRightPress}>
-        <Ionicons name={rightIcon as any} size={28} color="#222" />
+        <Ionicons name={rightIcon as any} size={24} color="#222" />
       </TouchableOpacity>
     </View>
   );
@@ -32,7 +32,7 @@ export default function Navbar({
 
 const styles = StyleSheet.create({
   container: {
-    height: 120,
+    height: 110,
     paddingTop: 40,
     flexDirection: "row",
     alignItems: "center",
@@ -44,8 +44,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
   },
   title: {
-    fontSize: 20,
-    fontWeight: "bold",
+    fontSize: 18,
+    fontWeight: "semibold",
     color: "#222",
+    textAlign: "center",
   },
 });

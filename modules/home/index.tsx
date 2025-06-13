@@ -13,7 +13,7 @@ export default function Home() {
       <Navbar
         title="Products"
         leftIcon="menu"
-        rightIcon="cart"
+        rightIcon="cart-outline"
         onLeftPress={() => console.log("Menu pressed")}
         onRightPress={() => router.push("/cart")}
       />

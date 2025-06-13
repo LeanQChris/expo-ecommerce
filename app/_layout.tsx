@@ -3,6 +3,7 @@ import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
+import Toast from "react-native-toast-message";
 
 import TanstackQueryProvider from "@/core/providers/tanstack-query.provider";
 
@@ -33,9 +34,17 @@ export default function RootLayout() {
               headerShown: false,
             }}
           />
+          <Stack.Screen
+            name="product/[id]"
+            options={{
+              title: "Product Details",
+              headerShown: false,
+            }}
+          />
           <Stack.Screen name="+not-found" />
         </Stack>
         <StatusBar style="dark" />
+        <Toast />
       </ThemeProvider>
     </TanstackQueryProvider>
   );

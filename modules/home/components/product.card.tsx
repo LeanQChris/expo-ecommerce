@@ -1,21 +1,30 @@
 import { cartStore } from "@/modules/cart/store";
 import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import React from "react";
 import {
   Dimensions,
   Image,
   StyleSheet,
   Text,
-  ToastAndroid,
   TouchableOpacity,
   View,
 } from "react-native";
+import Toast from "react-native-toast-message";
 import { Product } from "../data/product";
 
 export default function ProductCard({ product }: { product: Product }) {
   const { addProductToCart } = cartStore();
+  const router = useRouter();
   return (
-    <TouchableOpacity key={product.id} style={styles.card} activeOpacity={0.85}>
+    <TouchableOpacity
+      key={product.id}
+      style={styles.card}
+      activeOpacity={0.85}
+      onPress={() => {
+        router.push(`/product/${product.id}`);
+      }}
+    >
       <Image
         source={{
           uri: product.images?.[0] || "https://via.placeholder.com/120",
@@ -43,10 +52,15 @@ export default function ProductCard({ product }: { product: Product }) {
             activeOpacity={0.85}
             onPress={() => {
               addProductToCart(product, 1);
-              ToastAndroid.show(
-                `${product.title} added to cart`,
-                ToastAndroid.SHORT
-              );
+              Toast.show({
+                type: "success",
+                text1: "Added to Cart",
+                text2: `${product.title} has been added to your cart.`,
+                position: "bottom",
+                visibilityTime: 2000,
+                autoHide: true,
+                bottomOffset: 50,
+              });
             }}
           >
             <Ionicons
@@ -71,11 +85,11 @@ const styles = StyleSheet.create({
     margin: CARD_MARGIN / 2,
     width: CARD_WIDTH,
     alignItems: "center",
-    padding: 14,
+    padding: 12,
   },
   productImage: {
-    width: CARD_WIDTH - 28,
-    height: CARD_WIDTH - 28,
+    width: CARD_WIDTH - 20,
+    height: CARD_WIDTH - 20,
     borderRadius: 12,
     backgroundColor: "#e9e9e9",
     marginBottom: 12,

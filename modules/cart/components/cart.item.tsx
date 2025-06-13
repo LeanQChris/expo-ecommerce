@@ -56,7 +56,7 @@ export default function CartItem({
           <TouchableOpacity
             onPress={() => removeProductFromCart(item.product.id)}
           >
-            <MaterialIcons name="delete-outline" size={20} color="red" />
+            <MaterialIcons name="delete-outline" size={20} />
           </TouchableOpacity>
         </View>
       </View>
