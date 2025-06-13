@@ -7,6 +7,7 @@ interface CartStore {
     addProductToCart: (product: Product, quantity: number) => void;
     removeProductFromCart: (productId: number) => void;
     updateProductQuantity: (productId: number, quantity: number) => void;
+    getCartItemCount: () => number;
 }
 
 export const cartStore = create<CartStore>((set) => ({
@@ -38,4 +39,8 @@ export const cartStore = create<CartStore>((set) => ({
                 : item
         )
     })),
+    getCartItemCount: (): number => {
+        const state = cartStore.getState();
+        return state.cartItems.reduce((count, item) => count + item.quantity, 0);
+    }
 }));
