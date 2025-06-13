@@ -6,7 +6,7 @@ import { homeStore } from "../store";
 
 export default function useGetProducts() {
     const { selectedCategoryId } = homeStore();
-    const { data, isLoading } = useQuery<Products>({
+    const queryData = useQuery<Products>({
         queryKey: ["products", selectedCategoryId],
         queryFn: () => httpClient.get(endpoints.allProducts, {
             params: {
@@ -16,7 +16,7 @@ export default function useGetProducts() {
     });
 
     return {
-        products: data,
-        isLoading,
+        products: queryData.data,
+        ...queryData
     };
 }

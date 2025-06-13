@@ -6,7 +6,7 @@ import { useLocalSearchParams } from "expo-router";
 
 export default function useGetProduct() {
     const { id } = useLocalSearchParams();
-    const { data, isLoading, error } = useQuery<Product>({
+    const { data, isLoading, error,refetch } = useQuery<Product>({
         queryKey: ["product", id],
         queryFn: async () => httpClient.get(endpoints.productsById(+id)),
     });
@@ -14,5 +14,6 @@ export default function useGetProduct() {
         data,
         isLoading,
         error,
+        refetch
     }
 }

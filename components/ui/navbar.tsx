@@ -25,8 +25,8 @@ export default function Navbar({
         <Ionicons name={leftIcon as any || router.canGoBack() && "chevron-back"} size={24} color="#222" />
       </TouchableOpacity>
       <Text style={styles.title}>{title}</Text>
-      <TouchableOpacity onPress={onRightPress}>
-        <Ionicons name={rightIcon as any} size={24} color="#222" />
+      <TouchableOpacity onPress={onRightPress || (() => router.push("/cart"))}>
+        <Ionicons name={rightIcon as any || "cart-outline"} size={24} color="#222" />
       </TouchableOpacity>
     </View>
   );

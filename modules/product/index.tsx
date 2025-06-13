@@ -3,6 +3,7 @@ import Navbar from "@/components/ui/navbar";
 import React from "react";
 import {
   ActivityIndicator,
+  RefreshControl,
   ScrollView,
   StyleSheet,
   Text,
@@ -17,6 +18,7 @@ export default function ProductDetail() {
     data,
     isLoading,
     error,
+    refetch
   } = useGetProduct()
 
   if (isLoading) {
@@ -43,7 +45,10 @@ export default function ProductDetail() {
   return (
     <View style={{ flex: 1, width: "100%" }}>
       <Navbar title={data.title} />
-      <ScrollView >
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={isLoading} onRefresh={refetch} />
+        }>
         <ProductImages data={data} />
         <View style={styles.container}>
           <ProductInfo data={data} />
