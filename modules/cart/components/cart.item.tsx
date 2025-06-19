@@ -1,4 +1,4 @@
-import { Product } from "@/modules/home/data/product";
+import { Product } from "@/modules/explore/data/product";
 import { MaterialIcons } from "@expo/vector-icons";
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -13,7 +13,7 @@ export default function CartItem({
 
   return (
     <View key={item.product.id} style={styles.itemContainer}>
-    <Image
+      <Image
         source={{ uri: item.product.images[0] }}
         style={styles.productImage}
         resizeMode="cover"
@@ -29,7 +29,6 @@ export default function CartItem({
             flexDirection: "row",
             alignItems: "flex-end",
             justifyContent: "space-between",
-
           }}
         >
           <View style={styles.quantityContainer}>

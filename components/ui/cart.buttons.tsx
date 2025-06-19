@@ -1,5 +1,5 @@
 import { cartStore } from "@/modules/cart/store";
-import { Product } from "@/modules/home/data/product";
+import { Product } from "@/modules/explore/data/product";
 import { MaterialIcons } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";

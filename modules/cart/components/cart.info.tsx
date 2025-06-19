@@ -18,26 +18,28 @@ export default function CartInfo() {
         right: 16,
       }}
     >
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginBottom: 8,
-        }}
-      >
-        <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-          Total Items: {cartItems.length}
-        </Text>
-        <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-          Total Price: $
-          {cartItems
-            .reduce(
-              (total, item) => total + item.product.price * item.quantity,
-              0
-            )
-            .toFixed(2)}
-        </Text>
-      </View>
+      {cartItems.length > 0 && (
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginBottom: 8,
+          }}
+        >
+          <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+            Total Items: {cartItems.length}
+          </Text>
+          <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+            Total Price: $
+            {cartItems
+              .reduce(
+                (total, item) => total + item.product.price * item.quantity,
+                0
+              )
+              .toFixed(2)}
+          </Text>
+        </View>
+      )}
       <TouchableOpacity
         onPress={() => router.push("/checkout")}
         disabled={cartItems.length === 0}

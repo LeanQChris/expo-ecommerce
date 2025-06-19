@@ -1,4 +1,4 @@
-import { Product } from "@/modules/home/data/product";
+import { Product } from "@/modules/explore/data/product";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
@@ -18,6 +18,11 @@ export default function CartList() {
       keyExtractor={(item) => item.product.id.toString()}
       showsVerticalScrollIndicator={false}
       style={{ marginBottom: 100 }}
+      contentContainerStyle={
+        cartItems.length === 0
+          ? { flexGrow: 1, justifyContent: "center", alignItems: "center" }
+          : undefined
+      }
       ListEmptyComponent={
         <View style={styles.emptyContainer}>
           <MaterialCommunityIcons

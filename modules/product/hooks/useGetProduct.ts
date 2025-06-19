@@ -1,6 +1,6 @@
 import { endpoints } from "@/core/constants/endpoints";
 import httpClient from "@/core/network/client";
-import { Product } from "@/modules/home/data/product";
+import { Product } from "@/modules/explore/data/product";
 import { useQuery } from "@tanstack/react-query";
 import { useLocalSearchParams } from "expo-router";
 

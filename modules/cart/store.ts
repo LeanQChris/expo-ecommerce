@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Product } from "../home/data/product";
+import { Product } from "../explore/data/product";
 
 interface CartStore {
     cartItems: { product: Product, quantity: number }[];

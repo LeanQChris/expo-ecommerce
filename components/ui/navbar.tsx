@@ -10,6 +10,7 @@ type NavbarProps = {
   rightIcon?: string;
   onLeftPress?: () => void;
   onRightPress?: () => void;
+  showBack?: boolean;
 };
 
 export default function Navbar({
@@ -18,22 +19,27 @@ export default function Navbar({
   rightIcon,
   onLeftPress,
   onRightPress,
+  showBack = true,
 }: NavbarProps) {
   const router = useRouter();
   const { getCartItemCount } = cartStore();
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        onPress={
-          onLeftPress || router.canGoBack() ? () => router.back() : undefined
-        }
-      >
-        <Ionicons
-          name={(leftIcon as any) || (router.canGoBack() && "chevron-back")}
-          size={24}
-          color="#222"
-        />
-      </TouchableOpacity>
+      {showBack ? (
+        <TouchableOpacity
+          onPress={
+            onLeftPress || router.canGoBack() ? () => router.back() : undefined
+          }
+        >
+          <Ionicons
+            name={(leftIcon as any) || (router.canGoBack() && "chevron-back")}
+            size={24}
+            color="#222"
+          />
+        </TouchableOpacity>
+      ) : (
+        <View style={{ width: 24 }} />
+      )}
       <Text style={styles.title}>{title}</Text>
       <TouchableOpacity
         onPress={onRightPress || (() => router.push("/cart"))}

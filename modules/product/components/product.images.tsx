@@ -1,4 +1,4 @@
-import { Product } from "@/modules/home/data/product";
+import { Product } from "@/modules/explore/data/product";
 import React, { useState } from "react";
 import {
   FlatList,
