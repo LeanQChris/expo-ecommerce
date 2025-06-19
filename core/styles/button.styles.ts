@@ -17,7 +17,7 @@ export const buttonStyles = StyleSheet.create({
     text: {
         color: '#fff',
         fontSize: 16,
-        fontWeight: '600',
+        fontWeight: '500',
         letterSpacing: 0.5,
     },
     disabled: {

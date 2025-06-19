@@ -35,6 +35,13 @@ export default function RootLayout() {
             }}
           />
           <Stack.Screen
+            name="checkout"
+            options={{
+              title: "Checkout",
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
             name="product/[id]"
             options={{
               title: "Product Details",

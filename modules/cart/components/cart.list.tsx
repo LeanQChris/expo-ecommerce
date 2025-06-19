@@ -7,38 +7,32 @@ import CartItem from "./cart.item";
 
 export default function CartList() {
   const { cartItems } = cartStore();
-
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={cartItems}
-        renderItem={({
-          item,
-        }: {
-          item: { product: Product; quantity: number };
-        }) => <CartItem item={item} />}
-        keyExtractor={(item) => item.product.id.toString()}
-        showsVerticalScrollIndicator={false}
-        ListEmptyComponent={
-          <View style={styles.emptyContainer}>
-            <MaterialCommunityIcons
-              name="cart-outline"
-              size={48}
-              color="#bbb"
-              style={{ marginBottom: 12 }}
-            />
-            <Text style={styles.emptyText}>Your cart is empty.</Text>
-          </View>
-        }
-      />
-    </View>
+    <FlatList
+      data={cartItems}
+      renderItem={({
+        item,
+      }: {
+        item: { product: Product; quantity: number };
+      }) => <CartItem item={item} />}
+      keyExtractor={(item) => item.product.id.toString()}
+      showsVerticalScrollIndicator={false}
+      ListEmptyComponent={
+        <View style={styles.emptyContainer}>
+          <MaterialCommunityIcons
+            name="cart-outline"
+            size={48}
+            color="#bbb"
+            style={{ marginBottom: 12 }}
+          />
+          <Text style={styles.emptyText}>Your cart is empty.</Text>
+        </View>
+      }
+    />
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 12,
-  },
   emptyContainer: {
     flex: 1,
     alignItems: "center",
