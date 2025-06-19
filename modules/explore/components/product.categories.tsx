@@ -31,7 +31,7 @@ export default function ProductCategories() {
           style={[
             styles.categoryItem,
             { marginLeft: 16, paddingHorizontal: 12 },
-            selectedCategoryId === null && styles.selectedCategoryItem,
+            selectedCategoryId == null && styles.selectedCategoryItem, // changed === to ==
           ]}
           onPress={() => setSelectedCategoryId(undefined)}
         >
@@ -39,6 +39,7 @@ export default function ProductCategories() {
             All
           </Text>
         </TouchableOpacity>
+
         {categories?.map((category: Category) => (
           <TouchableOpacity
             key={category.id}

@@ -17,21 +17,22 @@ export default function ProductCard({ product }: { product: Product }) {
   const { addProductToCart } = cartStore();
   const router = useRouter();
   return (
-    <TouchableOpacity
-      key={product.id}
-      style={styles.card}
-      activeOpacity={0.85}
-      onPress={() => {
-        router.push(`/product/${product.id}`);
-      }}
-    >
-      <Image
-        source={{
-          uri: product.images[0] || "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png?v=1530129081",
-        }}
-        style={styles.productImage}
-        resizeMode="cover"
-      />
+    <View style={styles.card}>
+      <TouchableOpacity
+        onPress={() => router.push(`/product/${product.id}`)}
+        key={product.id}
+        activeOpacity={0.85}
+      >
+        <Image
+          source={{
+            uri:
+              product.images[0] ||
+              "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png?v=1530129081",
+          }}
+          style={styles.productImage}
+          resizeMode="cover"
+        />
+      </TouchableOpacity>
       <View style={styles.productInfo}>
         <Text style={styles.productTitle} numberOfLines={1}>
           {product.title}
@@ -59,7 +60,7 @@ export default function ProductCard({ product }: { product: Product }) {
                 position: "bottom",
                 visibilityTime: 2000,
                 autoHide: true,
-                bottomOffset: 50,
+                keyboardOffset: 100,
               });
             }}
           >
@@ -72,7 +73,7 @@ export default function ProductCard({ product }: { product: Product }) {
           </TouchableOpacity>
         </View>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 }
 const { width } = Dimensions.get("window");
