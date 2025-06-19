@@ -17,6 +17,7 @@ export default function CartList() {
       }) => <CartItem item={item} />}
       keyExtractor={(item) => item.product.id.toString()}
       showsVerticalScrollIndicator={false}
+      style={{ marginBottom: 100 }}
       ListEmptyComponent={
         <View style={styles.emptyContainer}>
           <MaterialCommunityIcons
