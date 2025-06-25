@@ -30,6 +30,20 @@ export default function RootLayout() {
               }}
             />
             <Stack.Screen
+              name="signin"
+              options={{
+                title: "SignIn",
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="signup"
+              options={{
+                title: "Signup",
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
               name="cart"
               options={{
                 title: "Cart",

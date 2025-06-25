@@ -1,8 +1,10 @@
 import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { DefaultTheme } from "@react-navigation/native";
-import React from "react";
+import { useRouter } from "expo-router";
+import React, { useEffect } from "react";
 import { TouchableWithoutFeedback, View } from "react-native";
+import { supabase } from "../core/supabase/client";
 import ExploreScreen from "./explore";
 import HomeScreen from "./home";
 import ProfileScreen from "./profile";
@@ -10,6 +12,30 @@ import ProfileScreen from "./profile";
 const Tab = createBottomTabNavigator();
 
 export default function LandingScreen() {
+  const router = useRouter();
+
+  useEffect(() => {
+    let isMounted = true;
+    // Check session on mount
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session && isMounted) {
+        router.replace("/signin");
+      }
+    });
+    // Listen for auth state changes
+    const { data: listener } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        if (!session) {
+          router.replace("/signin");
+        }
+      }
+    );
+    return () => {
+      isMounted = false;
+      listener?.subscription.unsubscribe();
+    };
+  }, []);
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
