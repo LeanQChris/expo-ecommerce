@@ -4,7 +4,6 @@ import { DefaultTheme } from "@react-navigation/native";
 import React from "react";
 import { TouchableWithoutFeedback, View } from "react-native";
 import ExploreScreen from "./explore";
-import HomeScreen from "./home";
 import ProfileScreen from "./profile";
 
 const Tab = createBottomTabNavigator();
@@ -12,6 +11,7 @@ const Tab = createBottomTabNavigator();
 export default function LandingScreen() {
   return (
     <Tab.Navigator
+      initialRouteName="Explore"
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarStyle: {
@@ -35,9 +35,7 @@ export default function LandingScreen() {
         tabBarIcon: ({ focused, size, color }) => {
           let iconName: React.ComponentProps<typeof Ionicons>["name"];
 
-          if (route.name === "Home") {
-            iconName = focused ? "home" : "home-outline";
-          } else if (route.name === "Explore") {
+          if (route.name === "Explore") {
             iconName = focused ? "apps" : "apps-outline";
           } else if (route.name === "Profile") {
             iconName = focused ? "person" : "person-outline";
@@ -51,7 +49,6 @@ export default function LandingScreen() {
         tabBarInactiveTintColor: "#ccccc",
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Explore" component={ExploreScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>

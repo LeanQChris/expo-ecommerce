@@ -1,11 +1,29 @@
-import { DefaultTheme, ThemeProvider } from "@react-navigation/native";
+import { useAuth } from "@clerk/clerk-expo";
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar";
-import "react-native-reanimated";
-import Toast from "react-native-toast-message";
+import { Stack, useRouter } from "expo-router";
+import React, { useEffect } from "react";
 
-import TanstackQueryProvider from "@/core/providers/tanstack-query.provider";
+import ProvidersWrapper from "@/core/providers/wrapper";
+
+function AppRouter() {
+  const router = useRouter();
+  const { isSignedIn, isLoaded: isAuthLoaded } = useAuth();
+
+  useEffect(() => {
+    if (!isAuthLoaded) {
+      return;
+    }
+
+    const targetRoute = isSignedIn ? "/" : "/login";
+    router.replace(targetRoute);
+  }, [isAuthLoaded, isSignedIn, router]);
+
+  if (!isAuthLoaded) {
+    return null;
+  }
+
+  return <Stack screenOptions={{ headerShown: false }} />;
+}
 
 export default function RootLayout() {
   const [loaded] = useFonts({
@@ -17,42 +35,8 @@ export default function RootLayout() {
   }
 
   return (
-    <TanstackQueryProvider>
-      <ThemeProvider value={DefaultTheme}>
-        <Stack>
-          <Stack.Screen
-            name="index"
-            options={{
-              title: "Home",
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="cart"
-            options={{
-              title: "Cart",
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="checkout"
-            options={{
-              title: "Checkout",
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="product/[id]"
-            options={{
-              title: "Product Details",
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-        <StatusBar style="dark" />
-        <Toast />
-      </ThemeProvider>
-    </TanstackQueryProvider>
+    <ProvidersWrapper>
+      <AppRouter />
+    </ProvidersWrapper>
   );
 }

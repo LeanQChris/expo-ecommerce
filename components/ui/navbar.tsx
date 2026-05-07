@@ -11,6 +11,7 @@ type NavbarProps = {
   onLeftPress?: () => void;
   onRightPress?: () => void;
   showBack?: boolean;
+  showRightIcon?: boolean;
 };
 
 export default function Navbar({
@@ -20,6 +21,7 @@ export default function Navbar({
   onLeftPress,
   onRightPress,
   showBack = true,
+  showRightIcon = true,
 }: NavbarProps) {
   const router = useRouter();
   const { getCartItemCount } = cartStore();
@@ -49,38 +51,40 @@ export default function Navbar({
 
       {/* Right Icon Button */}
       <View style={styles.iconContainer}>
-        <TouchableOpacity
-          onPress={onRightPress || (() => router.push("/cart"))}
-          style={{ position: "relative" }}
-        >
-          <Ionicons
-            name={(rightIcon as any) || "cart-outline"}
-            size={24}
-            color="#222"
-          />
-          {!rightIcon && getCartItemCount() > 0 && (
-            <View
-              style={{
-                position: "absolute",
-                top: -4,
-                right: -8,
-                borderRadius: 100,
-                minWidth: 16,
-                height: 16,
-                justifyContent: "center",
-                alignItems: "center",
-                paddingHorizontal: 4,
-                backgroundColor: "red", // Add background color for badge visibility
-              }}
-            >
-              <Text
-                style={{ color: "white", fontSize: 10, fontWeight: "bold" }}
+        {showRightIcon ? (
+          <TouchableOpacity
+            onPress={onRightPress || (() => router.push("/cart"))}
+            style={{ position: "relative" }}
+          >
+            <Ionicons
+              name={(rightIcon as any) || "cart-outline"}
+              size={24}
+              color="#222"
+            />
+            {!rightIcon && getCartItemCount() > 0 && (
+              <View
+                style={{
+                  position: "absolute",
+                  top: -4,
+                  right: -8,
+                  borderRadius: 100,
+                  minWidth: 16,
+                  height: 16,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  paddingHorizontal: 4,
+                  backgroundColor: "red",
+                }}
               >
-                {getCartItemCount()}
-              </Text>
-            </View>
-          )}
-        </TouchableOpacity>
+                <Text
+                  style={{ color: "white", fontSize: 10, fontWeight: "bold" }}
+                >
+                  {getCartItemCount()}
+                </Text>
+              </View>
+            )}
+          </TouchableOpacity>
+        ) : null}
       </View>
     </View>
   );
