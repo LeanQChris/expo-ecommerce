@@ -20,8 +20,12 @@ if (!supabaseUrl || !supabaseAnonKey) {
 }
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+    global: {
+
+    },
     auth: {
         persistSession: true,
         detectSessionInUrl: true,
+
     },
 });
