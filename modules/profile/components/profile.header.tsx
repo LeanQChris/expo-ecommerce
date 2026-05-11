@@ -1,6 +1,6 @@
 import { useUser } from "@clerk/clerk-expo";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 
 export default function ProfileHeader() {
   const { isLoaded, user } = useUser();
@@ -10,9 +10,10 @@ export default function ProfileHeader() {
     "Guest";
   const email =
     user?.primaryEmailAddress?.emailAddress ||
-    user?.emailAddress ||
     user?.emailAddresses?.[0]?.emailAddress ||
     "No email";
+  const profileImageUrl =
+    (user as any)?.profileImageUrl || (user as any)?.imageUrl || undefined;
   const initials = fullName
     .split(" ")
     .map((part) => part.charAt(0))
@@ -23,7 +24,11 @@ export default function ProfileHeader() {
   return (
     <View style={styles.header}>
       <View style={styles.avatar}>
-        <Text style={styles.avatarText}>{initials || "G"}</Text>
+        {profileImageUrl ? (
+          <Image source={{ uri: profileImageUrl }} style={styles.avatarImage} />
+        ) : (
+          <Text style={styles.avatarText}>{initials || "G"}</Text>
+        )}
       </View>
       <View style={styles.userInfo}>
         <Text style={styles.userName}>
@@ -48,6 +53,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#111",
     alignItems: "center",
     justifyContent: "center",
+    overflow: "hidden",
+  },
+  avatarImage: {
+    width: "100%",
+    height: "100%",
   },
   avatarText: {
     color: "#fff",

@@ -4,6 +4,7 @@ import { DefaultTheme } from "@react-navigation/native";
 import React from "react";
 import { TouchableWithoutFeedback, View } from "react-native";
 import ExploreScreen from "./explore";
+import OrdersScreen from "./orders";
 import ProfileScreen from "./profile";
 
 const Tab = createBottomTabNavigator();
@@ -37,6 +38,8 @@ export default function LandingScreen() {
 
           if (route.name === "Explore") {
             iconName = focused ? "apps" : "apps-outline";
+          } else if (route.name === "Orders") {
+            iconName = focused ? "receipt" : "receipt-outline";
           } else if (route.name === "Profile") {
             iconName = focused ? "person" : "person-outline";
           } else {
@@ -50,6 +53,7 @@ export default function LandingScreen() {
       })}
     >
       <Tab.Screen name="Explore" component={ExploreScreen} />
+      <Tab.Screen name="Orders" component={OrdersScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );

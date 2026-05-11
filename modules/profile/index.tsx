@@ -18,7 +18,6 @@ export default function ProfileScreen() {
     "Guest";
   const email =
     user?.primaryEmailAddress?.emailAddress ||
-    user?.emailAddress ||
     user?.emailAddresses?.[0]?.emailAddress ||
     "No email";
 
@@ -44,12 +43,6 @@ export default function ProfileScreen() {
           <Text style={styles.sectionTitle}>Account</Text>
           <ProfileRow label="Name" value={isLoaded ? fullName : "Loading..."} />
           <ProfileRow label="Email" value={isLoaded ? email : "Loading..."} />
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Activity</Text>
-          <ProfileRow label="Orders" value="3 recent" />
-          <ProfileRow label="Saved items" value="2 items" />
         </View>
 
         <View style={styles.section}>

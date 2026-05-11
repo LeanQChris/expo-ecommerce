@@ -1,9 +1,10 @@
-import { Stack, useRouter } from "expo-router";
+import { Stack, usePathname, useRouter } from "expo-router";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function NotFoundScreen() {
   const router = useRouter();
+  const pathname = usePathname();
 
   return (
     <View style={styles.container}>
@@ -13,6 +14,10 @@ export default function NotFoundScreen() {
         We couldn't find the page you were looking for. Try returning to the
         Explore screen to continue browsing.
       </Text>
+      <View style={styles.routeContainer}>
+        <Text style={styles.routeLabel}>Requested route</Text>
+        <Text style={styles.route}>{pathname || "Unknown"}</Text>
+      </View>
       <TouchableOpacity
         style={styles.button}
         onPress={() => router.replace("/")}
@@ -57,5 +62,24 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 16,
     fontWeight: "600",
+  },
+  routeContainer: {
+    width: "100%",
+    marginTop: 16,
+    padding: 16,
+    borderRadius: 14,
+    backgroundColor: "#f3f4f6",
+  },
+  routeLabel: {
+    fontSize: 13,
+    color: "#6b7280",
+    marginBottom: 6,
+    textTransform: "uppercase",
+    letterSpacing: 0.8,
+  },
+  route: {
+    fontSize: 16,
+    color: "#111",
+    fontWeight: "500",
   },
 });

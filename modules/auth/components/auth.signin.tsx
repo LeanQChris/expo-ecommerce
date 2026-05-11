@@ -20,7 +20,13 @@ export default function AuthSignIn() {
     }
 
     try {
-      await startSSOFlow({ strategy });
+      const { createdSessionId, setActive } = await startSSOFlow({
+        strategy,
+      });
+
+      if (createdSessionId && setActive) {
+        await setActive({ session: createdSessionId });
+      }
     } catch (err) {
       setError("Unable to sign in with social provider. Try again.");
     } finally {

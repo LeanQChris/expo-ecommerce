@@ -15,6 +15,10 @@ export default function AuthScreen() {
     }
   }, [isLoaded, isSignedIn, router]);
 
+  if (!isLoaded) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>

@@ -19,7 +19,17 @@ export default function ProductCategories() {
   if (isLoading) {
     return (
       <View style={styles.container}>
-        <Text style={styles.loadingText}>Loading...</Text>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          {Array.from({ length: 5 }).map((_, index) => (
+            <View
+              key={index}
+              style={[styles.categoryItem, styles.skeletonItem]}
+            >
+              <View style={styles.skeletonAvatar} />
+              <View style={styles.skeletonText} />
+            </View>
+          ))}
+        </ScrollView>
       </View>
     );
   }
@@ -106,5 +116,21 @@ const styles = StyleSheet.create({
     color: "#222",
     fontWeight: "500",
     maxWidth: 80,
+  },
+  skeletonItem: {
+    paddingHorizontal: 12,
+  },
+  skeletonAvatar: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: "#e9e9e9",
+    marginRight: 8,
+  },
+  skeletonText: {
+    width: 50,
+    height: 12,
+    borderRadius: 8,
+    backgroundColor: "#e9e9e9",
   },
 });
